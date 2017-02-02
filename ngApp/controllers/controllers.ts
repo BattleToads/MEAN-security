@@ -1,6 +1,21 @@
 namespace myapp.Controllers {
 
     export class LoginController {
+      public userInfo
+
+      public login() {
+        this.userService.loginUser(this.userInfo).then((data) => {
+          this.$window.localStorage.setItem("token", JSON.stringify(data.token));
+          alert('login successful');
+        })
+      }
+
+      public constructor(
+        private userService,
+        public $window
+      ) {
+
+      }
 
     }
 
@@ -14,7 +29,7 @@ namespace myapp.Controllers {
       }
 
       public constructor(
-        private userService,
+        private userService
       ) {
 
       }
